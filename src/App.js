@@ -1,24 +1,25 @@
-import logo from './logo.svg'
 import './App.css'
+import { AppRouter } from './routes/AppRouter'
+import React, { useState } from 'react'
+import Header from './components/header/Header'
 
 function App () {
+  const productsArr = JSON.parse(localStorage.getItem('product')) || []
+
+  if (localStorage.length > 0) {
+    setTimeout(() => {
+      localStorage.clear()
+      console.log('clear')
+    }, 3600000)
+  }
+
+  const [count, setCount] = useState(productsArr?.length || 0)
+  const [nameProduct, setNameProduct] = useState('Product')
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header count={count} nameProduct={nameProduct} />
+      <AppRouter setCount={setCount} setNameProduct={setNameProduct} />
+    </>
   )
 }
 
