@@ -4,16 +4,15 @@ import React, { useState } from 'react'
 import Header from './components/header/Header'
 
 function App () {
-  const productsArr = JSON.parse(localStorage.getItem('product')) || []
+  const products = JSON.parse(localStorage.getItem('product')) || []
 
   if (localStorage.length > 0) {
     setTimeout(() => {
       localStorage.clear()
-      console.log('clear')
     }, 3600000)
   }
 
-  const [count, setCount] = useState(productsArr?.length || 0)
+  const [count, setCount] = useState(products?.length || 0)
   const [nameProduct, setNameProduct] = useState('Product')
   return (
     <>

@@ -15,7 +15,7 @@ export const postItemCart = async (id, colorCode, storageCode) => {
   })
 
     .then(function (response) {
-      console.log(response)
+      return response
     })
     .catch(function (error) {
       console.log(error)
