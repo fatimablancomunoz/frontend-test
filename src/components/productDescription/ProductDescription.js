@@ -27,24 +27,19 @@ export const ProductDescription = ({ setCount, setNameProduct }) => {
     memory
   }
 
-  const [item, setItem] = useState(null)
   const [arrayProducts, setArrayProducts] = useState([])
 
   const handlePostItem = (e) => {
     async function fetchData () {
       const response = await postItemCart(id, color, memory)
-      setItem(response)
-      console.log(item, 'item')
+      return response
     }
     fetchData()
     setCount((oldCount) => oldCount + 1)
     setArrayProducts(arrayProducts.concat(product))
-    const dateTimeAdd = Date.now()
-    localStorage.setItem('hour', dateTimeAdd.toString())
   }
 
   localStorage.setItem('product', JSON.stringify(arrayProducts))
-  console.log(arrayProducts, 'arrayProducts')
 
   const handleChangeColor = (e) => {
     setColor(e.target.value)
