@@ -5,11 +5,11 @@ import Header from './components/header/Header'
 
 function App () {
   const products = JSON.parse(localStorage.getItem('product')) || []
+  const date = Date.now()
+  const timestamp = parseInt(localStorage.getItem('timestamp'), 10)
 
-  if (localStorage.length > 0) {
-    setTimeout(() => {
-      localStorage.clear()
-    }, 3600000)
+  if ((date - timestamp) > 3600000) {
+    localStorage.clear()
   }
 
   const [count, setCount] = useState(products?.length || 0)
